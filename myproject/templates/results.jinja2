@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Find A Crafter</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+	<!--[if !IE 7]>
+	<style type="text/css">
+		#wrap {display:table;height:100%}
+    </style>
+	<![endif]-->
+    <style type="text/css">
+        .locale { text-align: center; }
+        .locale-name { font-weight: bold; }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="/static/findacrafter.css" />
+<script type="text/javascript" src="http://static.wowhead.com/widgets/power.js"></script><script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
+
+
+</head>
+<body>
+    <div id="top">
+    <p>We found {{ count }} crafters who can make <a href="http://www.wowhead.com/spell={{ recipeid }}">{{ recipename }}</a> on your realm, showing the first 100...</p>
+    </div>
+	<div id="wrap">
+            <table class="results">
+            <tr>
+            <th>Server</th>
+            <th>Character</th>
+	    <th>Faction</th>
+            <th>Last Active</th>
+            <th>Last Checked</th>
+            </tr>
+            {% for name, active, checked, faction, realm in res %}
+            <tr>
+            <td>{{ realm }}</td>
+            <td><a href="http://us.battle.net/wow/en/character/{{ realm }}/{{ name }}/simple">{{ name }}</a></td>
+	    <td>{{ faction }}</td>
+            <td>{{ active }}</td>
+            <td>{{ checked }}</td>
+            </tr>
+            {% endfor %}
+            </table>
+	</div>
+</body>
+</html>

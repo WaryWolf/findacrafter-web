@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Find A Crafter</title>
+    <link rel="stylesheet" href="/deform_static/css/form.css"
+          type="text/css"
+            />
+
+<link rel="stylesheet" href="/deform_static/css/ui-lightness/jquery-ui-1.8.11.custom.css" type="text/css" />
+
+    <script type="text/javascript"
+            src="/deform_static/scripts/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript"
+            src="/deform_static/scripts/jquery.form-3.09.js"></script>
+    <script type="text/javascript"
+            src="/deform_static/scripts/jquery-ui-1.8.11.custom.min.js"></script>
+    <script type="text/javascript"
+            src="/deform_static/scripts/deform.js"></script>
+
+    <script type="text/javascript">
+        function doSubmit() {
+            form = document.getElementById('deform');
+            //var servurl = form.elements["server"].value;
+            //var facturl = form.elements["faction"].value;
+            //var recipeurl = form.elements["recipe"].value;
+            var servid = document.getElementById('deformField1').value;
+            var faction = document.getElementById('deformField3').value;
+            var recipe = document.getElementById('deformField2').value;
+            var destination = '/find/' + servid + '/' + faction + '/' + recipe;
+            //var destination = root.concat(servurl,sep,facturl,sep,recipeurl);
+            form.action=destination;
+            form.submit();
+        };
+            
+        mybutt = document.getElementById('deformsubmit');
+        mybutt.action=doSubmit();
+    </script>
+</head>
+<body>
+<h2>Find A Crafter</h2>
+
+<!-- <div id="form" tal:content="structure form"/> --!>
+<div id="form">
+    <input type="text"
+           name="recipe"
+           value=""
+           id="recipe" size="60"/>
+    <script type="text/javascript">
+      deform.addCallback(
+        'deformField2',
+        function (oid) {
+            $('#' + oid).autocomplete({source: "/recipes"});
+            $('#' + oid).autocomplete("option", {"delay": 400, "minLength": 3});
+        }
+      );
+    </script>
+
+</div>
+
+
+
+
+</body>
+</html>

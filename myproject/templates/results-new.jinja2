@@ -1,0 +1,48 @@
+{% extends "base.jinja2" %}
+{% block head %}
+<script type="text/javascript" src="http://static.wowhead.com/widgets/power.js"></script><script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
+{% endblock %}
+
+{% block content %}
+
+    {% if toobroad is defined %}
+    <div id="top">
+        <p>Your search returned {{ resnum }} results. Please choose the recipe you're looking for:</p>
+    </div>
+    <div id="wrap">
+        <table class="results">
+        {% for id, name in res %}
+            <td><a href="http://findacrafter.net/find/{{ servid }}/{{ faction }}/{{ name }}">{{ name }}</a></td>
+            {% if loop.index is divisibleby 3 %}
+                <tr>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+        
+    {% else %}
+    <div id="top">
+    <p>We found {{ count }} crafters who can make <a href="http://www.wowhead.com/spell={{ recipeid }}">{{ recipename }}</a> on your realm, showing the first 100...</p>
+    </div>
+	<div id="wrap">
+            <table class="results">
+            <tr>
+            <th>Server</th>
+            <th>Character</th>
+	    <th>Faction</th>
+            <th>Last Active</th>
+            <th>Last Checked</th>
+            </tr>
+            {% for name, active, checked, faction, realm in res %}
+            <tr>
+            <td>{{ realm }}</td>
+            <td><a href="http://us.battle.net/wow/en/character/{{ realm }}/{{ name }}/simple">{{ name }}</a></td>
+	    <td>{{ faction }}</td>
+            <td>{{ active }}</td>
+            <td>{{ checked }}</td>
+            </tr>
+            {% endfor %}
+            </table>
+	</div>
+    {% endif %}
+{% endblock %}

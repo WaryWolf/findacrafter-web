@@ -1,0 +1,60 @@
+body {
+        background-color:#fcc268; 
+/*        font-family:"Verdana"; */
+        font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+	background-repeat:no-repeat;
+        background-position:right bottom;
+        background-attachment:fixed;
+}
+
+
+
+div {
+        text-indent:0px;
+        outline-style:solid;
+        outline-width:0px;
+        outline-color:#00ff00;
+}
+
+#warn {
+        color: #FF0000;
+        font-weight: bold;
+        margin: 10px;
+}
+
+#top {
+        text-align:center;
+        float:top;
+        margin:10px;
+}
+
+table.results {
+        border:2px solid #CC6500;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        background-color: #E2A547;
+        padding-right: 20px;
+/*        padding-left: 20px; */
+        /*text-align:center;*/
+        width:auto;
+        /* width: 700px ; */
+        margin-left: auto ;
+        margin-right: auto ;
+}
+
+th {
+	text-align:center;
+}
+
+td {
+	padding-left: 20px;
+}
+
+#footer {
+        text-align:center;
+        font-size:70%;
+        float:left;
+        padding:20px;
+        margin:20px;
+}

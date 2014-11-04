@@ -1,0 +1,50 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    <div id="warn">&nbsp;</div>
+    <form id="form">
+    <label for="server">Realm: </label>
+    <select name="server" id="server">
+    <option selected="selected" value=''>-</option>
+    {% for id, name in realms %}
+    <option value="{{ id }}">{{ name }}</option>
+    {% endfor %}
+    </select>
+    <br>
+    <label for="faction">Faction: </label>
+    <select name="faction" id="faction">
+    <option selected="selected" value="">-</option>
+    <option value="A">Alliance</option>
+    <option value="H">Horde</option>
+    <option value="B">Both</option>
+    </select>
+    <br>
+    <label for="Recipe">Recipe: </label>
+    <input type="text"
+           name="recipe"
+           value=""
+           id="recipe" size="60"/>
+    <br>
+
+    <script type="text/javascript">
+    $( "#recipe" ).autocomplete({
+      source: "recipes",
+      minLength: 3,
+  });
+ function doSubmit() {
+            var servid = document.getElementById('server').value;
+            var faction = document.getElementById('faction').value;
+            var recipe = document.getElementById('recipe').value;
+            if (servid == null || servid == "" || faction == null || faction == "" || recipe == null || recipe == "") {
+                document.getElementById('warn').innerHTML = "Error: Please fill out all the form fields.<br>";
+                return;
+            }
+            var destination = '/find/' + servid + '/' + faction + '/' + recipe;
+            window.location = destination;
+        };
+
+
+
+    </script>
+    <input type="button" onclick="doSubmit()" value="Submit">
+    </form>
+{% endblock %}

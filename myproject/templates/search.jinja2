@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Find A Crafter</title>
+    <link rel="stylesheet" href="/deform_static/css/form.css"
+          type="text/css"
+            />
+
+<link rel="stylesheet" href="/deform_static/css/ui-lightness/jquery-ui-1.8.11.custom.css" type="text/css" />
+
+<link rel="stylesheet" href="/static/findacrafter.css" type="text/css" />
+
+    <script type="text/javascript"
+            src="/deform_static/scripts/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript"
+            src="/deform_static/scripts/jquery.form-3.09.js"></script>
+    <script type="text/javascript"
+            src="/deform_static/scripts/jquery-ui-1.8.11.custom.min.js"></script>
+    <script type="text/javascript"
+            src="/deform_static/scripts/deform.js"></script>
+
+    <script type="text/javascript">
+        function doSubmit() {
+            var servid = document.getElementById('server').value;
+            var faction = document.getElementById('faction').value;
+            var recipe = document.getElementById('recipe').value;
+            if (servid == null || servid == "" || faction == null || faction == "" || recipe == null || recipe == "") {
+                document.getElementById('warn').innerHTML = "Error: Please fill out all the form fields.<br>";
+                return;
+            }
+            var destination = '/find/' + servid + '/' + faction + '/' + recipe;
+            window.location = destination;
+        };
+    </script>
+</head>
+<body>
+<h2>Find A Crafter</h2>
+<div id="warn">&nbsp;</div>
+<div id="formdiv">
+
+    <form id="form">
+
+    <select name="server" id="server">
+    <option selected="selected" value=''>Realm</option>
+    {% for id, name in realms %}
+    <option value="{{ id }}">{{ name }}</option>
+    {% endfor %}
+    </select>
+
+    <select name="faction" id="faction">
+    <option selected="selected" value="">Faction</option>
+    <option value="A">Alliance</option>
+    <option value="H">Horde</option>
+    <option value="B">Both</option>
+    </select>
+
+    <input type="text"
+           name="recipe"
+           value=""
+           id="recipe" size="60"/>
+    <script type="text/javascript">
+      deform.addCallback(
+        'recipe',
+        function (oid) {
+            $('#' + oid).autocomplete({source: "/recipes"});
+            $('#' + oid).autocomplete("option", {"delay": 400, "minLength": 3});
+        }
+      );
+    </script>
+    <input type="button" onclick="doSubmit()" value="Submit">
+</div>
+
+
+
+
+</body>
+</html>
