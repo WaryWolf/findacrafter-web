@@ -9,8 +9,6 @@ here = os.path.abspath(os.path.dirname(__file__))
 requires=[  'pyramid>=1.0.2',
             'pyramid_jinja2',
     	    'pyramid_chameleon',
-            'deform<=1.0',
-            'colander',
             'psycopg2']
 
 setup(name='myproject',

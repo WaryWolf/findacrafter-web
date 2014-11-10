@@ -8,6 +8,12 @@ class Armory(object):
         self.cur = self.conn.cursor()
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE, self.cur)
 
+
+    def close(self):
+        self.cur.close()
+        self.conn.close()
+
+
     def doesRealmExist(self, realmid):
         self.cur.execute("SELECT 1 FROM information_schema.tables \
                           WHERE table_schema = 'public' and table_name = 'characters_{0}' LIMIT 1;".format(realmid))
@@ -48,7 +54,6 @@ class Armory(object):
                     AND realms.realm = '{0}');".format(name))
         return self.cur.fetchall()
 
-
     def getRealmCrafters(self, realmid, recipeid, faction):
         self.cur.execute("SELECT name, last_active, last_checked, faction FROM characters_{0} c, char_recipe_{0} r\
                     WHERE c.char_id = r.char_id \
@@ -56,9 +61,12 @@ class Armory(object):
                     AND c.faction LIKE %s ORDER BY c.last_active DESC LIMIT 100;".format(realmid), [recipeid, faction])
         return self.cur.fetchall()
 
-
     def getRecipeID(self, recipestring):
         self.cur.execute("SELECT recipe_id, name FROM recipes WHERE name ILIKE '%%' || %s || '%%';", [recipestring])
+        return self.cur.fetchall()
+
+    def getRecipeIDExact(self, recipestring):
+        self.cur.execute("SELECT recipe_id, name FROM recipes WHERE name = %s;", [recipestring])
         return self.cur.fetchall()
 
     def getAllRecipes(self):

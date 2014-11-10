@@ -28,6 +28,12 @@ div {
         margin:10px;
 }
 
+#header {
+        text-align:center;
+        float:top;
+        margin:10px;
+}
+
 table.results {
         border:2px solid #CC6500;
         -moz-border-radius: 15px;
@@ -50,6 +56,12 @@ th {
 td {
 	padding-left: 20px;
 }
+
+/*li:not(:last-child) { */
+li {
+    margin-bottom: 10px;
+}
+
 
 #footer {
         text-align:center;

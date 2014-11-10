@@ -1,0 +1,31 @@
+{% extends "base.jinja2" %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+
+<div id="faq">
+<h2>Frequently Asked Questions</h2>
+    <ul>
+        <li>What is this thing?
+            <ul><li>It's a website that lets you make searches into a database that contains listings of "some" characters in World of Warcraft, and the crafting professions they can make.</li></ul></li>
+
+        <li>"some"? Why so vague?
+            <ul><li>After 10 years of WoW, lots of people have moved on, and their characters/accounts have become dormant and inaccessible. There's no way to tell how many characters there are in total, but see the Stats page for an idea of how many this site knows about.</li></ul></li>
+
+        <li>So, how does this thing work?
+            <ul><li>I use some perl scripts to scan the <a href="https://dev.battle.net/" target="_blank" >Blizzard API</a>. If you're interested in viewing the source code, check out this repository: <a href="https://github.com/WaryWolf/findacrafter">findacrafter</a></li></ul></li>
+
+        <li>Is this against Blizzard's Terms of Service (TOS)?
+            <ul><li>I have had a quick read of their API TOS, and I don't believe it is. If I'm wrong, please contact me at the email address below and let me know, and I'll work something out.</li></ul></li>
+
+        <li>I don't want my character/characters to appear here! Can you remove them?
+            <ul><li>Sure. Just contact me below with some kind of proof it's your character (perhaps a screenshot?) and I'll make sure all your characters stop appearing in search results.</li></ul></li>
+
+        <li>Why does your site look so ugly?
+            <ul><li>Because I'm more of a programmer than a web designer. I will try to make it less ugly in the future. For now - Sorry!</li></ul></li>
+
+        <li>You're a cool dude/I want to yell at you/Your site is broken/I have some question not addressed above.
+            <ul><li>Okay, send me an email at <b>findacrafter@warywolf.net</b> and I'll try to help.
+
+{% endblock %}
